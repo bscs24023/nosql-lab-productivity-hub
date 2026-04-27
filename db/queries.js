@@ -141,6 +141,11 @@ async function createProject(db, projectData) {
  */
 async function archiveProject(db, projectId) {
   // TODO: implement
+  const result = await db.collection('projects').updateOne(
+    { _id: projectId },
+    { $set: { archived: true } }
+  );
+  return { matchedCount: result.matchedCount, modifiedCount: result.modifiedCount };
   
 }
 
