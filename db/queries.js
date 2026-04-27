@@ -168,7 +168,16 @@ async function archiveProject(db, projectId) {
  */
 async function listProjectTasks(db, projectId, status) {
   // TODO: implement
-  throw new Error('listProjectTasks not implemented');
+  const filtered_tasks = { projectId: projectId };
+  if(status)
+  {
+    filtered_tasks.status = status;
+  }
+  const tasks = await db.collection('tasks')
+    .find(filtered_tasks)
+    .sort({ priority: -1, createdAt: -1 })
+    .toArray();
+  return tasks;
 }
 
 /**
