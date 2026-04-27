@@ -72,7 +72,8 @@ async function signupUser(db, userData) {
  */
 async function loginFindUser(db, email) {
   // TODO: implement
-  throw new Error('loginFindUser not implemented');
+  const user = await db.collection('users').findOne({ email: email });
+  return user;
 }
 
 /**

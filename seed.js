@@ -26,6 +26,9 @@ const { connect } = require('./db/connection');
   await db.collection('tasks').deleteMany({});
   await db.collection('notes').deleteMany({});
 
+  await db.collection('users').createIndex({ email: 1 }, { unique: true });
+
+
   // =============================================================================
   //  TODO: Insert your seed data below.
   //
