@@ -93,7 +93,11 @@ async function loginFindUser(db, email) {
  */
 async function listUserProjects(db, ownerId) {
   // TODO: implement
-  throw new Error('listUserProjects not implemented');
+  const projects = await db.collection('projects')
+    .find({ ownerId: ownerId, archived: false })
+    .sort({ createdAt: -1 })
+    .toArray();
+  return projects;
 }
 
 /**
